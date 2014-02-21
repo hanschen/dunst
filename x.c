@@ -857,7 +857,7 @@ void x_setup(void)
 static void x_set_win_type(Window win)
 {
 
-    long data[2];
+    long data[3];
 
     Atom net_wm_window_type =
             XInternAtom(xctx.dpy, "_NET_WM_WINDOW_TYPE", false);
@@ -865,9 +865,12 @@ static void x_set_win_type(Window win)
             XInternAtom(xctx.dpy, "_NET_WM_WINDOW_TYPE_NOTIFICATION", false);
     Atom net_wm_window_type_utility =
             XInternAtom(xctx.dpy, "_NET_WM_WINDOW_TYPE_UTILITY", false);
+    Atom net_wm_window_type_dock =
+            XInternAtom(xctx.dpy, "_NET_WM_WINDOW_TYPE_DOCK", false);
 
-    data[0] = net_wm_window_type_notification;
-    data[1] = net_wm_window_type_utility;
+    data[0] = net_wm_window_type_dock;
+    data[1] = net_wm_window_type_notification;
+    data[2] = net_wm_window_type_utility;
 
     XChangeProperty(xctx.dpy, win, net_wm_window_type, XA_ATOM, 32,
             PropModeReplace, (unsigned char *) &data, 1L);
